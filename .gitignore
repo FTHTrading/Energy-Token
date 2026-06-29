@@ -1,0 +1,23 @@
+# Foundry artifacts
+out/
+cache/
+broadcast/
+contracts/out/
+contracts/cache/
+contracts/broadcast/
+
+# Dependencies
+node_modules/
+contracts/node_modules/
+frontend/node_modules/
+frontend/.next/
+lib/forge-std/
+contracts/lib/chainlink-brownie-contracts/
+
+# Local env files
+.env
+.env.*
+
+# OS specific files
+.DS_Store
+Thumbs.db
