@@ -1,8 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #06080f;
+  --foreground: #f4f6fb;
+  --muted: #9aa3b8;
+  --card: #0f1424;
+  --border: #1e2740;
+  --accent-green: #22c55e;
+  --accent-amber: #f59e0b;
+  --accent-blue: #3b82f6;
+  --accent-orange: #f97316;
+  --accent-purple: #a855f7;
+  --accent-cyan: #06b6d4;
+  --glow: rgba(34, 197, 94, 0.15);
 }
 
 @theme inline {
@@ -12,15 +22,32 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+.gradient-hero {
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -10%, var(--glow), transparent),
+    linear-gradient(180deg, #0a1020 0%, var(--background) 55%);
+}
+
+.card-surface {
+  background: linear-gradient(145deg, rgba(15, 20, 36, 0.95), rgba(10, 14, 28, 0.9));
+  border: 1px solid var(--border);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+}
+
+.toc-link {
+  color: var(--muted);
+  transition: color 0.15s ease, border-color 0.15s ease;
+  border-left: 2px solid transparent;
+  padding-left: 0.75rem;
+}
+
+.toc-link:hover {
+  color: var(--foreground);
+  border-left-color: var(--accent-green);
 }

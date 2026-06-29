@@ -13,8 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Unykorn Energy Token",
-  description: "DePIN solar energy rewards and P2P energy trading on BNB Chain",
+  title: "Unykorn Energy Token | DePIN Solar & P2P Grid",
+  description:
+    "Chainlink-verified solar rewards, UNYE tokenomics, P2P energy escrow, and DAO governance on BNB Chain.",
 };
 
 export default function RootLayout({
@@ -25,9 +26,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full scroll-smooth antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col bg-[#06080f] text-[#f4f6fb]">
+        {children}
+      </body>
     </html>
   );
 }
