@@ -1,17 +1,51 @@
-# BNB Testnet Deployment
+# BNB Testnet Deployment — Unykorn Energy
 
-**RPC:** https://data-seed-prebsc-1-s1.binance.org:8545
+**Chain:** BNB Smart Chain Testnet (chainId 97)  
+**RPC:** `https://data-seed-prebsc-1-s1.binance.org:8545`  
+**Deployer:** `0x4A28aDDA36eCAE7A170a36c4195e10257114A7B2`  
+**Status:** Simulated only — deployer balance **0 tBNB** (fund before `--broadcast`)
 
-| Contract | Address |
-|----------|---------|
-| UNYE Token | 0x82905Ce761fA285D3B92e919642daB2cE8fc170e |
-| Solar NFT | 0x5Cc673A7f0317bCa877065745b63C6b3BC7Ee6D3 |
-| Distributor | 0x996ECE23EC589bC6A23c782d82A7c2C6F4D6d7fF |
-| Escrow | 0xE8e2E45F204904283E104825dEA376035d8524a9 |
+## Gas estimate (dry-run)
+
+| Metric | Value |
+|--------|-------|
+| Estimated gas | ~19,578,003 |
+| Estimated cost | **~0.00196 BNB** |
+| Recommended faucet request | **0.01 tBNB** (buffer for verify) |
+
+## Faucet
+
+https://testnet.bnbchain.org/faucet-smart
+
+## Deploy command
 
 ```powershell
 cd contracts
-forge script script/Deploy.s.sol --rpc-url https://data-seed-prebsc-1-s1.binance.org:8545 --broadcast --verify
+$env:PRIVATE_KEY = "<DEPLOYER_PRIVATE_KEY>"
+$env:TREASURY_ADDRESS = "0x4A28aDDA36eCAE7A170a36c4195e10257114A7B2"
+$env:ARBITRATOR_ADDRESS = "0x4A28aDDA36eCAE7A170a36c4195e10257114A7B2"
+forge script script/Deploy.s.sol `
+  --rpc-url https://data-seed-prebsc-1-s1.binance.org:8545 `
+  --broadcast `
+  --verify
 ```
 
-Faucet: https://testnet.bnbchain.org/faucet-smart
+## Post-deploy verification
+
+```powershell
+.\marketing-and-docs\social-campaigns\TESTNET_VERIFY.ps1 `
+  -TokenAddress <UNYE_PROXY> `
+  -NftAddress <NFT_PROXY> `
+  -DistributorAddress <DISTRIBUTOR_PROXY>
+```
+
+## Chainlink (BNB testnet)
+
+- Functions Router: `0x6E2dc0F9DB014aE19888F539E59285D2Ea04244C`
+- Set `CHAINLINK_SUB_ID` env var before deploy if you have a subscription
+
+## Token economics
+
+- Reward rate: **1 UNYE per 5 kWh** verified
+- Max supply: 250M UNYE
+- Genesis mint: 50M UNYE to treasury
